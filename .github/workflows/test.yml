@@ -27,7 +27,8 @@ jobs:
           sudo apt-get install -y gnucobol
 
       - name: Compile COBOL application
-        run: cobc -x -o accountsystem main.cob
+        run: |
+          cobc -x -o accountsystem main.cob operations.cob data.cob
 
       - name: Generate Golden Master
         run: python generate_golden_master.py
