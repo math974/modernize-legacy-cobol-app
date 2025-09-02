@@ -24,10 +24,10 @@ jobs:
       - name: Install COBOL compiler
         run: |
           sudo apt-get update
-          sudo apt-get install -y open-cobol
+          sudo apt-get install -y gnucobol
 
       - name: Compile COBOL application
-        run: cobc -x -o accountsystem src/app.cob
+        run: cobc -x -o accountsystem main.cob
 
       - name: Generate Golden Master
         run: python generate_golden_master.py
