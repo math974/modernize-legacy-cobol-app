@@ -29,6 +29,8 @@ def credit_account():
     global balance
     print("Enter credit amount: ")
     amount = float(input())
+    if amount < 0:
+        amount -= amount
     balance += amount
     #save_balance(balance)
     print(f"Amount credited. New balance: {balance:09.2f}")
@@ -37,6 +39,8 @@ def debit_account():
     global balance
     print("Enter debit amount: ")
     amount = float(input())
+    if amount < 0:
+        amount -= amount
     if balance >= amount:
         balance -= amount
         #save_balance(balance)
