@@ -21,7 +21,7 @@ def save_balance(balance):
 balance = load_balance()
 
 def view_balance():
-    print(f"Current balance: {balance}")
+    print(f"Current balance: {balance:08.2f}")
 
 def credit_account():
     global balance
