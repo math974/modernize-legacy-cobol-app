@@ -30,7 +30,7 @@ def credit_account():
     print("Enter credit amount: ")
     amount = float(input())
     if amount < 0:
-        amount -= amount
+        amount = -amount
     balance += amount
     #save_balance(balance)
     print(f"Amount credited. New balance: {balance:09.2f}")
@@ -40,7 +40,7 @@ def debit_account():
     print("Enter debit amount: ")
     amount = float(input())
     if amount < 0:
-        amount -= amount
+        amount = -amount
     if balance >= amount:
         balance -= amount
         #save_balance(balance)
