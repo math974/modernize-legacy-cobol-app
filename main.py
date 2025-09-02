@@ -5,20 +5,22 @@ import json
 # Fichier de sauvegarde
 BALANCE_FILE = "balance.json"
 
-def load_balance():
-    try:
-        with open(BALANCE_FILE, 'r') as f:
-            data = json.load(f)
-            return data.get('balance', 1000.00)
-    except FileNotFoundError:
-        return 1000.00
+balance = 1000.00
 
-def save_balance(balance):
-    with open(BALANCE_FILE, 'w') as f:
-        json.dump({'balance': balance}, f)
+#def load_balance():
+#    try:
+#        with open(BALANCE_FILE, 'r') as f:
+#            data = json.load(f)
+#            return data.get('balance', 1000.00)
+#    except FileNotFoundError:
+#        return 1000.00
+#
+#def save_balance(balance):
+#    with open(BALANCE_FILE, 'w') as f:
+#        json.dump({'balance': balance}, f)
 
 # Variables globales (comme en COBOL)
-balance = load_balance()
+#balance = load_balance()
 
 def view_balance():
     print(f"Current balance: {balance:09.2f}")
@@ -28,7 +30,7 @@ def credit_account():
     print("Enter credit amount: ")
     amount = float(input())
     balance += amount
-    save_balance(balance)
+    #save_balance(balance)
     print(f"Amount credited. New balance: {balance:09.2f}")
 
 def debit_account():
@@ -37,7 +39,7 @@ def debit_account():
     amount = float(input())
     if balance >= amount:
         balance -= amount
-        save_balance(balance)
+        #save_balance(balance)
         print(f"Amount debited. New balance: {balance:09.2f}")
     else:
         print("Insufficient funds for this debit.")
