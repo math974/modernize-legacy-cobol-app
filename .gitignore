@@ -1,6 +1,15 @@
 # cobol compiled files
 *.o
 
+balance.json
+golden_master.json
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+
+
 # cobol accountsystem program
 accountsystem
 

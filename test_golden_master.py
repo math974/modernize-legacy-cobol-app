@@ -1,5 +1,6 @@
 import subprocess
 import json
+import pytest
 
 def run_python(inputs):
     process = subprocess.Popen(
@@ -12,15 +13,24 @@ def run_python(inputs):
     stdout, _ = process.communicate("\n".join(inputs))
     return stdout
 
-def test_against_golden_master():
+def load_golden_master():
     with open("golden_master.json") as f:
-        golden_master = json.load(f)
+        return json.load(f)
 
-    for name, data in golden_master.items():
-        inputs = data["inputs"]
-        expected_output = data["output"]
-
+# Fonction générique pour créer un test
+def create_test_function(test_name, inputs, expected_output):
+    def test_func():
         python_output = run_python(inputs)
+        assert python_output.strip() == expected_output.strip(), f"Test {test_name} failed"
+    return test_func
 
-        # Here you can choose strict or tolerant comparison
-        assert python_output.strip() == expected_output.strip(), f"Mismatch in {name}"
+# Génération automatique des tests à partir du golden master
+golden_master = load_golden_master()
+
+# Création dynamique des tests pour chaque scénario
+for test_name, data in golden_master.items():
+    test_func = create_test_function(test_name, data["inputs"], data["output"])
+    # Attribution du nom du test pour pytest
+    test_func.__name__ = f"test_{test_name}"
+    # Ajout du test au module global
+    globals()[f"test_{test_name}"] = test_func
