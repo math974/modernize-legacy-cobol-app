@@ -21,7 +21,7 @@ def save_balance(balance):
 balance = load_balance()
 
 def view_balance():
-    print(f"Current balance: {balance:08.2f}")
+    print(f"Current balance: {balance:09.2f}")
 
 def credit_account():
     global balance
@@ -54,7 +54,7 @@ def main():
         print("3. Debit Account")
         print("4. Exit")
         print("--------------------------------")
-        print("Enter your choice (1-4): ", end="")
+        print("Enter your choice (1-4): ", end="\n")
         
         try:
             user_choice = int(input())
