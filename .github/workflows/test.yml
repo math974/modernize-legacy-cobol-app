@@ -59,7 +59,7 @@ jobs:
 
   unit-tests:
     runs-on: ubuntu-latest
-    needs: [test-compatibility, code-quality]  # S'exécute après le golden master et la vérification de qualité
+    needs: [test-compatibility, code-quality]  # it's run after the golden master and the code quality
 
     steps:
       - name: Checkout repository
