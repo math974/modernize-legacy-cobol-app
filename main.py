@@ -79,8 +79,13 @@ def main():
         print("Enter your choice (1-4): ", end="\n")
         
         try:
-            user_choice = int(input())
-        except ValueError:
+            input_str = input().strip()
+            if input_str and input_str[0].isdigit():
+                # Comme en COBOL PIC 9, on ne garde que le premier chiffre
+                user_choice = int(input_str[0])
+            else:
+                user_choice = 0
+        except (ValueError, IndexError):
             user_choice = 0
         
         if user_choice == 1:
