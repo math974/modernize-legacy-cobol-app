@@ -11,11 +11,11 @@ SCENARIOS = {
     "wrong_choice_character_too_much": ["abc2000", "4"],
     "wrong_choice_float": ["100.50", "4"],
     "wrong_choice_float_negative": ["-100.50", "4"],
-    "wrong_choice_float_too_much": ["2000.50", "4"],
+    "good_choice_float_too_much": ["2000.50","20", "4"],
     "wrong_choice_float_char": ["abc.50", "4"],
     "wrong_choice_float_char_negative": ["abc.-100", "4"],
     "wrong_choice_float_char_too_much": ["abc.2000", "4"],
-    "wrong_choice_float_overflow": ["10000000000000000000", "4"],
+    "good_choice_float_overflow": ["10000000000000000000", "4"],
     "wrong_choice_float_overflow_negative": ["-10000000000000000000", "4"],
     "wrong_choice_float_overflow_character": ["abc10000000000000000000", "4"],
     "wrong_choice_float_overflow_character_negative": ["abc-10000000000000000000", "4"],
@@ -67,12 +67,16 @@ def run_cobol(inputs):
 
 def main():
     golden_master = {}
+    i = 1
     for name, inputs in SCENARIOS.items():
+        print(f"{i} - Running test: {name}")
         output = run_cobol(inputs)
         golden_master[name] = {
             "inputs": inputs,
             "output": output
         }
+        i += 1
+        print(f"Test {i} done")
     with open("golden_master.json", "w") as f:
         json.dump(golden_master, f, indent=2)
 
