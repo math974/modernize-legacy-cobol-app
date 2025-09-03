@@ -36,9 +36,30 @@ jobs:
       - name: Run tests against Golden Master
         run: pytest -v test_golden_master.py
 
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Ruff
+        run: pip install ruff
+
+      - name: Run Ruff linter (PEP8 + more)
+        run: ruff check . --output-format=github
+
+      - name: Run Ruff formatter check
+        run: ruff format --check .
+
   unit-tests:
     runs-on: ubuntu-latest
-    needs: test-compatibility  # S'exécute après le golden master
+    needs: [test-compatibility, code-quality]  # S'exécute après le golden master et la vérification de qualité
 
     steps:
       - name: Checkout repository
