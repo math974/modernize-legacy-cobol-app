@@ -1,5 +1,5 @@
-import subprocess
 import json
+import subprocess
 
 SCENARIOS = {
     "wrong_choice_blank": ["", "4"],

@@ -1,6 +1,8 @@
-import subprocess
 import json
-import pytest
+import subprocess
+
+import main
+
 
 def run_python(inputs):
     process = subprocess.Popen(
@@ -13,9 +15,11 @@ def run_python(inputs):
     stdout, _ = process.communicate("\n".join(inputs))
     return stdout
 
+
 def load_golden_master():
     with open("golden_master.json") as f:
         return json.load(f)
+
 
 # Fonction générique pour créer un test
 def create_test_function(test_name, inputs, expected_output):
@@ -23,6 +27,7 @@ def create_test_function(test_name, inputs, expected_output):
         python_output = run_python(inputs)
         assert python_output.strip() == expected_output.strip(), f"Test {test_name} failed"
     return test_func
+
 
 # Génération automatique des tests à partir du golden master
 golden_master = load_golden_master()
