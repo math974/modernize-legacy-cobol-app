@@ -12,7 +12,7 @@ with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="legacy-cobol-modernization",
-    version="1.0.3",
+    version="1.0.4",
     author="Your Name",
     author_email="your.email@example.com",
     description="A Python implementation of a COBOL accounting system with Golden Master testing",
