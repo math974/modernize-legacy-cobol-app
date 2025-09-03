@@ -5,73 +5,100 @@ import json
 # Fichier de sauvegarde
 BALANCE_FILE = "balance.json"
 
+# Variables globales (comme en COBOL)
 balance = 1000.00
 
-#def load_balance():
-#    try:
-#        with open(BALANCE_FILE, 'r') as f:
-#            data = json.load(f)
-#            return data.get('balance', 1000.00)
-#    except FileNotFoundError:
-#        return 1000.00
-#
-#def save_balance(balance):
-#    with open(BALANCE_FILE, 'w') as f:
-#        json.dump({'balance': balance}, f)
+# === FONCTIONS DE LOGIQUE MÉTIER (sans I/O) ===
 
-# Variables globales (comme en COBOL)
-#balance = load_balance()
+def get_balance():
+    """Retourne le solde actuel"""
+    return balance
+
+def process_amount_input(input_value):
+    """
+    Traite une entrée utilisateur comme le ferait COBOL PIC 9(6)V99
+    Retourne le montant traité selon les règles COBOL
+    """
+    try:
+        amount = abs(float(input_value))
+        # Limite COBOL : PIC 9(6)V99 = maximum 999999.99
+        MAX_COBOL_VALUE = 999999.99
+        
+        # En COBOL, si le nombre dépasse la limite, il est traité comme 0
+        if amount > MAX_COBOL_VALUE:
+            return 0.0
+        return amount
+    except (ValueError, TypeError):
+        # En COBOL, les caractères non numériques sont traités comme 0
+        return 0.0
+
+def process_menu_choice(input_value):
+    """
+    Traite un choix de menu comme le ferait COBOL PIC 9
+    Retourne le premier chiffre ou 0 si invalide
+    """
+    try:
+        input_str = str(input_value).strip()
+        if input_str and input_str[0].isdigit():
+            # Comme en COBOL PIC 9, on ne garde que le premier chiffre
+            return int(input_str[0])
+        return 0
+    except (ValueError, IndexError, AttributeError):
+        return 0
+
+def credit_operation(amount):
+    """
+    Effectue une opération de crédit
+    Retourne True si l'opération a réussi, False sinon
+    """
+    global balance
+    processed_amount = process_amount_input(amount)
+    balance += processed_amount
+    return True
+
+def debit_operation(amount):
+    """
+    Effectue une opération de débit
+    Retourne True si l'opération a réussi, False si fonds insuffisants
+    """
+    global balance
+    processed_amount = process_amount_input(amount)
+    
+    if balance >= processed_amount:
+        balance -= processed_amount
+        return True
+    return False
+
+def reset_balance(new_balance=1000.0):
+    """Remet le solde à une valeur donnée (pour les tests)"""
+    global balance
+    balance = new_balance
+
+# === FONCTIONS D'INTERFACE UTILISATEUR ===
 
 def view_balance():
+    """Affiche le solde actuel"""
     print(f"Current balance: {balance:09.2f}")
 
 def credit_account():
-    global balance
+    """Interface pour le crédit d'un compte"""
     print("Enter credit amount: ")
-    
-    try:
-        amount = abs(float(input()))
-        # Limite COBOL : PIC 9(6)V99 = maximum 999999.99
-        MAX_COBOL_VALUE = 999999.99
-        
-        # En COBOL, si le nombre dépasse la limite, il est traité comme 0
-        if amount > MAX_COBOL_VALUE:
-            amount = 0.0
-            
-    except ValueError:
-        # En COBOL, les caractères non numériques sont traités comme 0
-        amount = 0.0
-    
-    balance += amount
-    #save_balance(balance)
+    amount_input = input()
+    credit_operation(amount_input)
     print(f"Amount credited. New balance: {balance:09.2f}")
 
 def debit_account():
-    global balance
+    """Interface pour le débit d'un compte"""
     print("Enter debit amount: ")
+    amount_input = input()
     
-    try:
-        amount = abs(float(input()))
-        # Limite COBOL : PIC 9(6)V99 = maximum 999999.99
-        MAX_COBOL_VALUE = 999999.99
-        
-        # En COBOL, si le nombre dépasse la limite, il est traité comme 0
-        if amount > MAX_COBOL_VALUE:
-            amount = 0.0
-            
-    except ValueError:
-        # En COBOL, les caractères non numériques sont traités comme 0
-        amount = 0.0
-    
-    if balance >= amount:
-        balance -= amount
-        #save_balance(balance)
+    if debit_operation(amount_input):
         print(f"Amount debited. New balance: {balance:09.2f}")
     else:
         print("Insufficient funds for this debit.")
 
 def main():
-    user_choice = 0
+    """Fonction principale avec boucle de menu"""
     continue_flag = "YES"
     
     while continue_flag != "NO":
@@ -84,15 +111,8 @@ def main():
         print("--------------------------------")
         print("Enter your choice (1-4): ", end="\n")
         
-        try:
-            input_str = input().strip()
-            if input_str and input_str[0].isdigit():
-                # Comme en COBOL PIC 9, on ne garde que le premier chiffre
-                user_choice = int(input_str[0])
-            else:
-                user_choice = 0
-        except (ValueError, IndexError):
-            user_choice = 0
+        user_input = input().strip()
+        user_choice = process_menu_choice(user_input)
         
         if user_choice == 1:
             view_balance()

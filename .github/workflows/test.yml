@@ -35,3 +35,27 @@ jobs:
 
       - name: Run tests against Golden Master
         run: pytest -v test_golden_master.py
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    needs: test-compatibility  # S'exécute après le golden master
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: pip install pytest
+
+      - name: Run Python unit tests
+        run: pytest -v test_unit.py --tb=short
+
+      - name: Run unit tests with coverage
+        run: |
+          pip install pytest-cov
+          pytest test_unit.py --cov=main --cov-report=term-missing
