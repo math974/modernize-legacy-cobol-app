@@ -19,7 +19,7 @@ def load_golden_master():
         return json.load(f)
 
 
-# Fonction générique pour créer un test
+# Generic function to create a test
 def create_test_function(test_name, inputs, expected_output):
     def test_func():
         python_output = run_python(inputs)
@@ -30,13 +30,13 @@ def create_test_function(test_name, inputs, expected_output):
     return test_func
 
 
-# Génération automatique des tests à partir du golden master
+# Automatic test generation from golden master
 golden_master = load_golden_master()
 
-# Création dynamique des tests pour chaque scénario
+# Dynamic creation of tests for each scenario
 for test_name, data in golden_master.items():
     test_func = create_test_function(test_name, data["inputs"], data["output"])
-    # Attribution du nom du test pour pytest
+    # Assign test name for pytest
     test_func.__name__ = f"test_{test_name}"
-    # Ajout du test au module global
+    # Add test to global module
     globals()[f"test_{test_name}"] = test_func

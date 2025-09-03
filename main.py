@@ -1,47 +1,47 @@
 #!/usr/bin/env python3
 
-# Fichier de sauvegarde
+# Balance file for persistence
 BALANCE_FILE = "balance.json"
 
-# Variables globales (comme en COBOL)
+# Global variables (like in COBOL)
 balance = 1000.00
 
-# === FONCTIONS DE LOGIQUE MÉTIER (sans I/O) ===
+# === BUSINESS LOGIC FUNCTIONS (without I/O) ===
 
 
 def get_balance():
-    """Retourne le solde actuel"""
+    """Returns the current balance"""
     return balance
 
 
 def process_amount_input(input_value):
     """
-    Traite une entrée utilisateur comme le ferait COBOL PIC 9(6)V99
-    Retourne le montant traité selon les règles COBOL
+    Processes user input as COBOL PIC 9(6)V99 would do
+    Returns the processed amount according to COBOL rules
     """
     try:
         amount = abs(float(input_value))
-        # Limite COBOL : PIC 9(6)V99 = maximum 999999.99
+        # COBOL limit: PIC 9(6)V99 = maximum 999999.99
         max_cobol_value = 999999.99
 
-        # En COBOL, si le nombre dépasse la limite, il est traité comme 0
+        # In COBOL, if the number exceeds the limit, it is treated as 0
         if amount > max_cobol_value:
             return 0.0
         return amount
     except (ValueError, TypeError):
-        # En COBOL, les caractères non numériques sont traités comme 0
+        # In COBOL, non-numeric characters are treated as 0
         return 0.0
 
 
 def process_menu_choice(input_value):
     """
-    Traite un choix de menu comme le ferait COBOL PIC 9
-    Retourne le premier chiffre ou 0 si invalide
+    Processes a menu choice as COBOL PIC 9 would do
+    Returns the first digit or 0 if invalid
     """
     try:
         input_str = str(input_value).strip()
         if input_str and input_str[0].isdigit():
-            # Comme en COBOL PIC 9, on ne garde que le premier chiffre
+            # Like in COBOL PIC 9, we only keep the first digit
             return int(input_str[0])
         return 0
     except (ValueError, IndexError, AttributeError):
@@ -50,8 +50,8 @@ def process_menu_choice(input_value):
 
 def credit_operation(amount):
     """
-    Effectue une opération de crédit
-    Retourne True si l'opération a réussi, False sinon
+    Performs a credit operation
+    Returns True if the operation succeeded, False otherwise
     """
     global balance
     processed_amount = process_amount_input(amount)
@@ -61,8 +61,8 @@ def credit_operation(amount):
 
 def debit_operation(amount):
     """
-    Effectue une opération de débit
-    Retourne True si l'opération a réussi, False si fonds insuffisants
+    Performs a debit operation
+    Returns True if the operation succeeded, False if insufficient funds
     """
     global balance
     processed_amount = process_amount_input(amount)
@@ -74,21 +74,21 @@ def debit_operation(amount):
 
 
 def reset_balance(new_balance=1000.0):
-    """Remet le solde à une valeur donnée (pour les tests)"""
+    """Resets the balance to a given value (for testing)"""
     global balance
     balance = new_balance
 
 
-# === FONCTIONS D'INTERFACE UTILISATEUR ===
+# === USER INTERFACE FUNCTIONS ===
 
 
 def view_balance():
-    """Affiche le solde actuel"""
+    """Displays the current balance"""
     print(f"Current balance: {balance:09.2f}")
 
 
 def credit_account():
-    """Interface pour le crédit d'un compte"""
+    """Interface for crediting an account"""
     print("Enter credit amount: ")
     amount_input = input()
     credit_operation(amount_input)
@@ -96,7 +96,7 @@ def credit_account():
 
 
 def debit_account():
-    """Interface pour le débit d'un compte"""
+    """Interface for debiting an account"""
     print("Enter debit amount: ")
     amount_input = input()
 
@@ -107,7 +107,7 @@ def debit_account():
 
 
 def main():
-    """Fonction principale avec boucle de menu"""
+    """Main function with menu loop"""
     continue_flag = "YES"
 
     while continue_flag != "NO":
