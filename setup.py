@@ -12,13 +12,13 @@ with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="legacy-cobol-modernization",
-    version="1.0.0",
+    version="1.0.2",
     author="Your Name",
     author_email="your.email@example.com",
     description="A Python implementation of a COBOL accounting system with Golden Master testing",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/mballot/modernize-legacy-cobol-app",
+    url="https://github.com/math974/modernize-legacy-cobol-app",
     packages=find_packages(),
     py_modules=["main"],
     classifiers=[
@@ -69,9 +69,9 @@ setup(
         "python",
     ],
     project_urls={
-        "Bug Reports": "https://github.com/mballot/modernize-legacy-cobol-app/issues",
-        "Source": "https://github.com/mballot/modernize-legacy-cobol-app",
-        "Documentation": "https://github.com/mballot/modernize-legacy-cobol-app#readme",
+        "Bug Reports": "https://github.com/math974/modernize-legacy-cobol-app/issues",
+        "Source": "https://github.com/math974/modernize-legacy-cobol-app",
+        "Documentation": "https://github.com/math974/modernize-legacy-cobol-app#readme",
     },
     include_package_data=True,
     zip_safe=False,

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "legacy-cobol-modernization"
-version = "1.0.0"
+version = "1.0.2"
 authors = [
     {name = "Your Name", email = "your.email@example.com"},
 ]
@@ -55,10 +55,10 @@ legacy-accounting = "main:main"
 cobol-accounting = "main:main"
 
 [project.urls]
-"Homepage" = "https://github.com/mballot/modernize-legacy-cobol-app"
-"Bug Reports" = "https://github.com/mballot/modernize-legacy-cobol-app/issues"
-"Source" = "https://github.com/mballot/modernize-legacy-cobol-app"
-"Documentation" = "https://github.com/mballot/modernize-legacy-cobol-app#readme"
+"Homepage" = "https://github.com/math974/modernize-legacy-cobol-app"
+"Bug Reports" = "https://github.com/math974/modernize-legacy-cobol-app/issues"
+"Source" = "https://github.com/math974/modernize-legacy-cobol-app"
+"Documentation" = "https://github.com/math974/modernize-legacy-cobol-app#readme"
 
 [tool.ruff]
 # Configuration pour Ruff - Linter Python ultra-rapide (écrit en Rust)
