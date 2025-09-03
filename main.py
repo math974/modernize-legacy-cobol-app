@@ -31,18 +31,16 @@ def credit_account():
     
     try:
         amount = abs(float(input()))
+        # Limite COBOL : PIC 9(6)V99 = maximum 999999.99
+        MAX_COBOL_VALUE = 999999.99
+        
+        # En COBOL, si le nombre dépasse la limite, il est traité comme 0
+        if amount > MAX_COBOL_VALUE:
+            amount = 0.0
+            
     except ValueError:
         # En COBOL, les caractères non numériques sont traités comme 0
         amount = 0.0
-    
-    # Limite COBOL : PIC 9(6)V99 = maximum 999999.99
-    MAX_COBOL_VALUE = 999999.99
-    
-    # Vérifier si l'amount ou le nouveau solde dépassent la limite COBOL
-    if amount > MAX_COBOL_VALUE or (balance + amount) > MAX_COBOL_VALUE:
-        # En COBOL, l'opération ne se fait pas en cas d'overflow
-        # On n'affiche rien et on ne modifie pas le solde
-        return
     
     balance += amount
     #save_balance(balance)
@@ -54,18 +52,16 @@ def debit_account():
     
     try:
         amount = abs(float(input()))
+        # Limite COBOL : PIC 9(6)V99 = maximum 999999.99
+        MAX_COBOL_VALUE = 999999.99
+        
+        # En COBOL, si le nombre dépasse la limite, il est traité comme 0
+        if amount > MAX_COBOL_VALUE:
+            amount = 0.0
+            
     except ValueError:
         # En COBOL, les caractères non numériques sont traités comme 0
         amount = 0.0
-    
-    # Limite COBOL : PIC 9(6)V99 = maximum 999999.99
-    MAX_COBOL_VALUE = 999999.99
-    
-    # Vérifier si l'amount dépasse la limite COBOL
-    if amount > MAX_COBOL_VALUE:
-        # En COBOL, l'opération ne se fait pas en cas d'overflow
-        # On n'affiche rien et on ne modifie pas le solde
-        return
     
     if balance >= amount:
         balance -= amount
