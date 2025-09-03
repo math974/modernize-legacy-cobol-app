@@ -1,9 +1,9 @@
 # Modernizing  a Cobol accounting system to a Node.js application using GitHub Copilot
 
-[![Unit Tests](https://github.com/mballot/modernize-legacy-cobol-app-epitech/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/mballot/modernize-legacy-cobol-app-epitech/actions/workflows/test.yml)
-[![Golden Master Tests](https://img.shields.io/badge/Golden%20Master-Passing-brightgreen)](https://github.com/mballot/modernize-legacy-cobol-app-epitech/actions/workflows/test.yml)
-[![Code Coverage](https://img.shields.io/badge/Coverage-80%2B%25-brightgreen)](https://github.com/mballot/modernize-legacy-cobol-app-epitech/actions/workflows/test.yml)
-[![Code Quality](https://img.shields.io/badge/Code%20Quality-PEP8-blue)](https://github.com/mballot/modernize-legacy-cobol-app-epitech/actions/workflows/test.yml)
+[![Unit Tests](https://github.com/mballot/modernize-legacy-cobol-app-epitech/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/mballot/modernize-legacy-cobol-app/actions/workflows/test.yml)
+[![Golden Master Tests](https://img.shields.io/badge/Golden%20Master-Passing-brightgreen)](https://github.com/mballot/modernize-legacy-cobol-app/actions/workflows/test.yml)
+[![Code Coverage](https://img.shields.io/badge/Coverage-80%2B%25-brightgreen)](https://github.com/mballot/modernize-legacy-cobol-app/actions/workflows/test.yml)
+[![Code Quality](https://img.shields.io/badge/Code%20Quality-PEP8-blue)](https://github.com/mballot/modernize-legacy-cobol-app/actions/workflows/test.yml)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
 [![COBOL](https://img.shields.io/badge/COBOL-GnuCOBOL-orange)](https://gnucobol.sourceforge.io/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
