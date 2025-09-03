@@ -28,7 +28,12 @@ def view_balance():
 def credit_account():
     global balance
     print("Enter credit amount: ")
-    amount = abs(float(input()))
+    
+    try:
+        amount = abs(float(input()))
+    except ValueError:
+        # En COBOL, les caractères non numériques sont traités comme 0
+        amount = 0.0
     
     # Limite COBOL : PIC 9(6)V99 = maximum 999999.99
     MAX_COBOL_VALUE = 999999.99
@@ -46,7 +51,12 @@ def credit_account():
 def debit_account():
     global balance
     print("Enter debit amount: ")
-    amount = abs(float(input()))
+    
+    try:
+        amount = abs(float(input()))
+    except ValueError:
+        # En COBOL, les caractères non numériques sont traités comme 0
+        amount = 0.0
     
     # Limite COBOL : PIC 9(6)V99 = maximum 999999.99
     MAX_COBOL_VALUE = 999999.99
