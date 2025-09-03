@@ -58,4 +58,10 @@ jobs:
       - name: Run unit tests with coverage
         run: |
           pip install pytest-cov
-          pytest test_unit.py --cov=main --cov-report=term-missing
+          pytest test_unit.py --cov=main --cov-report=term-missing --cov-report=xml --cov-report=html
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: htmlcov
