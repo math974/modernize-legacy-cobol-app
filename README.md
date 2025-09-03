@@ -4,7 +4,9 @@
 [![Golden Master Tests](https://img.shields.io/badge/Golden%20Master-Passing-brightgreen)](https://github.com/mballot/modernize-legacy-cobol-app/actions/workflows/test.yml)
 [![Code Coverage](https://img.shields.io/badge/Coverage-80%2B%25-brightgreen)](https://github.com/mballot/modernize-legacy-cobol-app/actions/workflows/test.yml)
 [![Code Quality](https://img.shields.io/badge/Code%20Quality-PEP8-blue)](https://github.com/mballot/modernize-legacy-cobol-app/actions/workflows/test.yml)
-[![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
+[![PyPI version](https://img.shields.io/pypi/v/legacy-cobol-modernization)](https://pypi.org/project/legacy-cobol-modernization/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/legacy-cobol-modernization)](https://pypi.org/project/legacy-cobol-modernization/)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![COBOL](https://img.shields.io/badge/COBOL-GnuCOBOL-orange)](https://gnucobol.sourceforge.io/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -16,6 +18,43 @@ models trained on public code. It may provide completions that are not perfect, 
 and take a trust but verify approach.**
 
 <img src="images/cobol_to_nodejs.png" alt="Cobol to Node.js" width="800"/>
+
+## 📦 Quick Installation via PyPI
+
+Install the modernized COBOL accounting system directly from PyPI:
+
+```bash
+# Install the package
+pip install legacy-cobol-modernization
+
+# Run the application
+legacy-accounting
+```
+
+### Alternative Installation Methods
+
+```bash
+# Install with development tools
+pip install legacy-cobol-modernization[dev]
+
+# Install with testing tools only  
+pip install legacy-cobol-modernization[test]
+
+# Install from source
+git clone https://github.com/mballot/modernize-legacy-cobol-app.git
+cd modernize-legacy-cobol-app
+pip install -e .
+```
+
+### Usage After Installation
+
+```bash
+# Run the accounting system
+legacy-accounting
+
+# Or use the alternative command
+cobol-accounting
+```
 
 ## Prerequisites
 
