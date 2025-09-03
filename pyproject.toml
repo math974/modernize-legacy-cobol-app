@@ -35,7 +35,6 @@ select = [
 # Règles à ignorer (si nécessaire)
 ignore = [
     "E501",  # Ligne trop longue (géré par le formateur)
-    "W503",  # Opérateur binaire avant saut de ligne (style obsolète)
 ]
 
 # Règles spécifiques par fichier
