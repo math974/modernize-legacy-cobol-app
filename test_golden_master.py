@@ -1,8 +1,6 @@
 import json
 import subprocess
 
-import main
-
 
 def run_python(inputs):
     process = subprocess.Popen(
@@ -10,7 +8,7 @@ def run_python(inputs):
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
-        text=True
+        text=True,
     )
     stdout, _ = process.communicate("\n".join(inputs))
     return stdout
@@ -25,7 +23,10 @@ def load_golden_master():
 def create_test_function(test_name, inputs, expected_output):
     def test_func():
         python_output = run_python(inputs)
-        assert python_output.strip() == expected_output.strip(), f"Test {test_name} failed"
+        assert python_output.strip() == expected_output.strip(), (
+            f"Test {test_name} failed"
+        )
+
     return test_func
 
 
